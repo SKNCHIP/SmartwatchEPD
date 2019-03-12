@@ -7,8 +7,10 @@
 
 #include "main.h"
 #include "stm32f0xx_hal.h"
+#include "stm32f0xx_hal_spi.h"
+#include "stm32f0xx_hal_conf.h"
 //#include "spi.h"
-#include "gpio.h"
+//#include "gpio.h"
 #include "EPDlib.h"
 
 //Communication
@@ -17,7 +19,7 @@ void EPDlib_SendCommand(uint8_t command){
 
     HAL_GPIO_WritePin(EPD_CS_GPIO_Port, EPD_CS_Pin, 0);
 	HAL_GPIO_WritePin(EPD_DC_GPIO_Port, EPD_DC_Pin, 0);
-	HAL_SPI_Transmit(&hspi1, &temp, sizeof(temp), 10);
+	HAL_SPI_Transmit(&EPD_SPI_PORT, &temp, sizeof(temp), 10);
 	HAL_GPIO_WritePin(EPD_CS_GPIO_Port, EPD_CS_Pin, 1);
 }
 void EPDlib_SendData(uint8_t data){
@@ -25,7 +27,7 @@ void EPDlib_SendData(uint8_t data){
 
 	HAL_GPIO_WritePin(EPD_CS_GPIO_Port, EPD_CS_Pin, 0);
 	HAL_GPIO_WritePin(EPD_DC_GPIO_Port, EPD_DC_Pin, 1);
-	HAL_SPI_Transmit(&hspi1, &temp, sizeof(temp), 10);
+	HAL_SPI_Transmit(&EPD_SPI_PORT, &temp, sizeof(temp), 10);
 	HAL_GPIO_WritePin(EPD_CS_GPIO_Port, EPD_CS_Pin, 1);
 }
 
@@ -94,7 +96,7 @@ void EPDlib_Start(){
     EPDlib_SendCommand(Frame2);
     EPDlib_SendData(0x0D);
     EPDlib_SendCommand(LoadLUT);
-    for(i = 0; i < 30; i++) EPD_SendData(LUTTable[i]);
+    for(int i = 0; i < 30; i++) EPD_SendData(LUTTable[i]);
 }
 void EPDlib_Image(const uint8_t* image){
     EPDlib_SendCommand(RAMXCounter);
@@ -119,7 +121,6 @@ void EPDlib_White(){
     EPDlib_SendData(0x00);
 
     EPDlib_SendCommand(LoadImage);
-    uint32_t counter = 0;
     for(uint8_t i = 0; i < COL; i++){
         for(uint8_t j = 0; j < ROW; j++){
             EPDlib_SendData(0xFF);
@@ -134,7 +135,6 @@ void EPDlib_Black(){
     EPDlib_SendData(0x00);
 
     EPDlib_SendCommand(LoadImage);
-    uint32_t counter = 0;
     for(uint8_t i = 0; i < COL; i++){
         for(uint8_t j = 0; j < ROW; j++){
             EPDlib_SendData(0x00);

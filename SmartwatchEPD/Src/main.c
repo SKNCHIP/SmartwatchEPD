@@ -43,7 +43,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <EPDlib.c>
+#include "EPDlib.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

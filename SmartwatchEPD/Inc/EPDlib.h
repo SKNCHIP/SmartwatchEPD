@@ -8,6 +8,10 @@
 #ifndef EPDlib_H_
 #define EPDlib_H_
 
+#ifndef EPD_SPI_PORT
+#define EPD_SPI_PORT        hspi1
+#endif
+
 //Constants
 #define RESET 0x12
 #define COL 152

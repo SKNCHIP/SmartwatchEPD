@@ -7,7 +7,7 @@
 
 #include "main.h"
 #include "stm32f0xx_hal.h"
-#include "spi.h"
+//#include "spi.h"
 #include "gpio.h"
 #include "EPDlib.h"
 

@@ -8,9 +8,8 @@
 #ifndef EPDlib_H_
 #define EPDlib_H_
 
-#ifndef EPD_SPI_PORT
-#define EPD_SPI_PORT        hspi1
-#endif
+#include "stm32f0xx_hal.h"
+#include "main.h"
 
 //Constants
 #define RESET 0x12

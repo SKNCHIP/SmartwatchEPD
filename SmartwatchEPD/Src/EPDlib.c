@@ -8,7 +8,8 @@
 #include "main.h"
 #include "stm32f0xx_hal.h"
 #include "EPDlib.h"
-extern SPI_HandleTypeDef hspi1;
+
+//extern SPI_HandleTypeDef hspi1;
 
 //Communication
 void EPDlib_SendCommand(uint8_t command){
@@ -147,3 +148,9 @@ void EPDlib_Update(){
     EPDlib_SendCommand(DeepSleepMode);
     EPDlib_SendData(0x01);
 }
+
+//RAM
+void EPDlib_RAM_Address(uint8_t xh_s, uint8_t xh_e, uint8_t yh_s, uint8_t yl_s, uint8_t yh_e, uint8_t yl_e){
+    
+}
+

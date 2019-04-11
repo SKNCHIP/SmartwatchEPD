@@ -8,9 +8,6 @@
 #ifndef EPDlib_H_
 #define EPDlib_H_
 
-#include "stm32f0xx_hal.h"
-#include "main.h"
-
 //Constants
 #define RESET 0x12
 #define COL 152
@@ -91,4 +88,8 @@ void EPDlib_White();
 void EPDlib_Black();
 
 void EPDlib_Update();
+
+//-RAM
+void EPDlib_RAM_Address(uint8_t xh_s, uint8_t xh_e, uint8_t yh_s, uint8_t yl_s, uint8_t yh_e, uint8_t yl_e);
+void EPDlib_RAM_Pointer(uint8_t xh, uint8_t yh, uint8_t yl);
 #endif
